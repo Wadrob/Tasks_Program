@@ -47,8 +47,7 @@ public class TaskManager {
 
                 try (FileWriter fileWriter = new FileWriter(file)){
                     for (int i = 0; i < arr.length; i++) {
-                        String added = Arrays.toString(arr[i]);
-                        fileWriter.append(added +"\n");
+                        fileWriter.append(Arrays.toString(arr [i]) + "\n");
                     }
                 }
                 catch (IOException e){
@@ -116,7 +115,7 @@ public class TaskManager {
         String answeartwo = scan.nextLine();
         arr[arr.length-1][1] = answeartwo;
 
-        System.out.println("Is your tast is important: true/false");
+        System.out.println("Is your task is important: true/false");
         String answearthree = scan.nextLine();
         arr[arr.length-1][2] = answearthree;
 
@@ -140,6 +139,7 @@ public class TaskManager {
                     }
                     else {
                         arr = ArrayUtils.remove(arr, i);
+                        System.out.println("Value was successfully deleted.");
                         return arr;
                     }
                 }

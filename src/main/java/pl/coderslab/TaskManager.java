@@ -4,6 +4,8 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -42,6 +44,17 @@ public class TaskManager {
             }
             else if (nextLine.equals("quit")){
                 System.out.println(ConsoleColors.RED +"Bye,bye");
+
+                try (FileWriter fileWriter = new FileWriter(file)){
+                    for (int i = 0; i < arr.length; i++) {
+                        String added = Arrays.toString(arr[i]);
+                        fileWriter.append(added +"\n");
+                    }
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+
                 break;
             }
             else {

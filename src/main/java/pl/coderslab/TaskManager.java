@@ -1,9 +1,10 @@
 package pl.coderslab;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Scanner;
 
 public class TaskManager {
@@ -25,7 +26,8 @@ public class TaskManager {
                 MENU();
             }
             else if (nextLine.equals("remove")){
-                System.out.println("Jestem w remove");
+                System.out.println(" ");
+                arr = REMOVEFROMLIST(arr);
                 System.out.println(" ");
                 MENU();
 
@@ -106,8 +108,38 @@ public class TaskManager {
         arr[arr.length-1][2] = answearthree;
 
         return arr;
+    }
+
+    public static String [][] REMOVEFROMLIST (String [][] arr){
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Please select number to remove");
+        String operator = " ";
+
+        while (!operator.equals("quit")){
+                try {
+                    String nextLine = scan.nextLine();
+                    int i = Integer.parseInt(nextLine);
+                    if (i < 0){
+                        System.out.println("Incorrect argument passed. Please give numver greater or equal 0");
+                    }
+                    else if (i >= arr.length){
+                        System.out.println("Incorrect argument passed. Please give number lesser then " + arr.length);
+                    }
+                    else {
+                        arr = ArrayUtils.remove(arr, i);
+                        return arr;
+                    }
+                }
+                catch (NumberFormatException e){
+                    System.out.println("Wrong number format, please try again");
+
+                }
+            }
+        return arr;
 
 
     }
+
+
 
 }

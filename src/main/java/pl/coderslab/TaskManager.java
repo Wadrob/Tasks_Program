@@ -13,13 +13,14 @@ public class TaskManager {
         File file = new File("tasks.csv");
         Scanner scan = new Scanner(System.in);
         String operator = " ";
-        String [][] arr = list(file);
+        String [][] arr = LIST(file);
 
         while (!operator.equals("quit")){
             String nextLine = scan.nextLine();
 
             if (nextLine.equals("add")){
-                System.out.println("Jestem w add");
+                System.out.println(" ");
+                arr = ADDINGTOLIST(arr);
                 System.out.println(" ");
                 MENU();
             }
@@ -30,6 +31,7 @@ public class TaskManager {
 
             }
             else if (nextLine.equals("list")){
+                System.out.println(" ");
                 System.out.println("list");
                 READINGLIST(arr);
                 System.out.println(" ");
@@ -58,7 +60,7 @@ public class TaskManager {
         System.out.println("quit");
     }
 
-    public static String [][] list (File file) {
+    public static String [][] LIST (File file) {
         String [][] list = new String[0][];
         try {
             Scanner scan = new Scanner(file);
@@ -70,6 +72,7 @@ public class TaskManager {
         }
         catch (FileNotFoundException e){
             e.printStackTrace();
+            System.out.println("Brak pliku");
         }
         return list;
 
@@ -77,11 +80,34 @@ public class TaskManager {
 
     public static void READINGLIST(String [][] arr){
         for (int i = 0; i < arr.length; i++){
+            System.out.print(i + ". ");
             for (int j = 0; j <arr[i].length; j++){
-                System.out.print(arr[i][j]+" ");
+                System.out.print(arr[i][j] + " ");
             }
             System.out.println(" ");
         }
+    }
+
+    public static String [][] ADDINGTOLIST (String [][] arr){
+        arr = Arrays.copyOf(arr, arr.length +1);
+        arr [arr.length-1] = new String [3];
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Please add task description");
+        String answearone = scan.nextLine();
+        arr[arr.length-1][0] = answearone;
+
+        System.out.println("Please add task due date");
+        String answeartwo = scan.nextLine();
+        arr[arr.length-1][1] = answeartwo;
+
+        System.out.println("Is your tast is important: true/false");
+        String answearthree = scan.nextLine();
+        arr[arr.length-1][2] = answearthree;
+
+        return arr;
+
+
     }
 
 }

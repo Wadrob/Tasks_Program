@@ -30,7 +30,8 @@ public class TaskManager {
 
             }
             else if (nextLine.equals("list")){
-                System.out.println("Jestem w list");
+                System.out.println("list");
+                READINGLIST(arr);
                 System.out.println(" ");
                 MENU();
 
@@ -72,6 +73,15 @@ public class TaskManager {
         }
         return list;
 
+    }
+
+    public static void READINGLIST(String [][] arr){
+        for (int i = 0; i < arr.length; i++){
+            for (int j = 0; j <arr[i].length; j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
     }
 
 }

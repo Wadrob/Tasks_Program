@@ -1,6 +1,7 @@
 package pl.coderslab;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Scanner;
@@ -9,8 +10,10 @@ public class TaskManager {
 
     public static void main (String [] args){
         MENU();
+        File file = new File("tasks.csv");
         Scanner scan = new Scanner(System.in);
         String operator = " ";
+        String [][] arr = list(file);
 
         while (!operator.equals("quit")){
             String nextLine = scan.nextLine();
@@ -54,9 +57,19 @@ public class TaskManager {
         System.out.println("quit");
     }
 
-    public static String [][] list (File file){
+    public static String [][] list (File file) {
         String [][] list = new String[0][];
-        list = Arrays.copyOf(list, list.length +1);
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String add = scan.nextLine();
+                list = Arrays.copyOf(list, list.length+1);
+                list[list.length-1] = add.split(",");
+            }
+        }
+        catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
         return list;
 
     }

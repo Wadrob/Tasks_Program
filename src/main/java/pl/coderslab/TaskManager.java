@@ -12,26 +12,22 @@ import java.util.Scanner;
 public class TaskManager {
 
     public static void main (String [] args){
-        MENU();
         File file = new File("tasks.csv");
         Scanner scan = new Scanner(System.in);
-        String operator = " ";
         String [][] arr = LIST(file);
 
-        while (!operator.equals("quit")){
+        while (true){
+            MENU();
             String nextLine = scan.nextLine();
-
             if (nextLine.equals("add")){
                 System.out.println(" ");
                 arr = ADDINGTOLIST(arr);
                 System.out.println(" ");
-                MENU();
             }
             else if (nextLine.equals("remove")){
                 System.out.println(" ");
                 arr = REMOVEFROMLIST(arr);
                 System.out.println(" ");
-                MENU();
 
             }
             else if (nextLine.equals("list")){
@@ -39,7 +35,6 @@ public class TaskManager {
                 System.out.println("list");
                 READINGLIST(arr);
                 System.out.println(" ");
-                MENU();
 
             }
             else if (nextLine.equals("quit")){
@@ -48,9 +43,10 @@ public class TaskManager {
                 try (FileWriter fileWriter = new FileWriter(file)){
                     for (int i = 0; i < arr.length; i++) {
                         StringBuilder fullrow = new StringBuilder();
-                        for (int j = 0; j < arr[i].length; j++){
-                            fullrow.append(arr[i][j] + " ");
+                        for (int j = 0; j < arr[i].length - 1; j++){
+                            fullrow.append(arr[i][j] + ",");
                         }
+                        fullrow.append(arr[i][2]);
                         String singlestring = fullrow.toString();
                         fileWriter.append(singlestring + "\n");
                     }
@@ -65,7 +61,6 @@ public class TaskManager {
             else {
                 System.out.println("Nieprawidłowa komenda");
                 System.out.println(" ");
-                MENU();
 
             }
 
@@ -131,9 +126,8 @@ public class TaskManager {
     public static String [][] REMOVEFROMLIST (String [][] arr){
         Scanner scan = new Scanner(System.in);
         System.out.println("Please select number to remove");
-        String operator = " ";
 
-        while (!operator.equals("quit")){
+        while (true){
                 try {
                     String nextLine = scan.nextLine();
                     int i = Integer.parseInt(nextLine);
@@ -154,7 +148,6 @@ public class TaskManager {
 
                 }
             }
-        return arr;
 
 
     }

@@ -43,10 +43,9 @@ public class TaskManager {
                 try (FileWriter fileWriter = new FileWriter(file)){
                     for (int i = 0; i < arr.length; i++) {
                         StringBuilder fullrow = new StringBuilder();
-                        for (int j = 0; j < arr[i].length - 1; j++){
+                        for (int j = 0; j <= arr[i].length - 1; j++){
                             fullrow.append(arr[i][j] + ",");
                         }
-                        fullrow.append(arr[i][2]);
                         String singlestring = fullrow.toString();
                         fileWriter.append(singlestring + "\n");
                     }

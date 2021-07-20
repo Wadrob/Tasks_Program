@@ -1,10 +1,10 @@
-# Tasks_Program
+Very basic and simple task manager written in Java.
 
-Very basic and simple task menager write in Java. 
+Program works only in the console and allows to:
 
-Program working only in console and can:
-- Save task to file
-- List all poprzednio saved in file tasks 
-- Delete task from file
+-Save task to file
+-List all previously saved in file tasks
+-Delete task from file
 
-It's very basic and simple code but can be used as a role model for beginners as a example of first, independently write program.  
+It's very elemental code but can be used as a role model for beginners; as an example of first, independently written programme.
+
